@@ -24,9 +24,9 @@ Auth::routes();
 
 
 /* PRODUCT ROUTES*/
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/product',App\Http\Controllers\ProductController::class);
-Route::post('/search',[App\Http\Controllers\ProductController::class,'search'])->name('product.search');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::resource('/product',App\Http\Controllers\ProductController::class)->middleware('auth');
+Route::post('/search',[App\Http\Controllers\ProductController::class,'search'])->name('product.search')->middleware('auth');
 
 /* CATEGORY ROUTES*/
-Route::resource('/category',App\Http\Controllers\CategoryController::class);
+Route::resource('/category',App\Http\Controllers\CategoryController::class)->middleware('auth');
